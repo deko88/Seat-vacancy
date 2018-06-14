@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeatVacancy">
+
+    <TableLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+
+           <EditText
+               android:layout_height="25pt"
+               android:padding="4pt"
+               android:textSize="12pt"
+               android:hint="Please enter your name"
+               android:id="@+id/userName"/>
+
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:lines="2"/>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_height="25pt"
+                android:padding="4pt"
+                android:text="Kindly select a seat:"
+                android:textColor="@android:color/black"
+                android:textSize="12pt" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_marginTop="75pt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+
+            <Button
+                android:text="01"
+                android:textSize="14pt"
+                android:id="@+id/s1"
+                android:onClick="onClick"/>
+
+            <Button
+                android:text="02"
+                android:textSize="14pt"
+                android:id="@+id/s2"
+                android:onClick="onClick"/>
+
+            <Button
+                android:text="03"
+                android:textSize="14pt"
+                android:id="@+id/s3"
+                android:onClick="onClick"/>
+
+            <Button
+                android:text="04"
+                android:textSize="14pt"
+                android:id="@+id/s4"
+                android:onClick="onClick"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+</android.support.constraint.ConstraintLayout>
