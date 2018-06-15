@@ -75,6 +75,60 @@
                 android:onClick="onClick"/>
 
         </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_marginTop="125pt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/sP1"
+                android:layout_height="25pt"
+                android:padding="4pt"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12pt" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/sP2"
+                android:layout_height="25pt"
+                android:padding="4pt"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12pt" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/sP3"
+                android:layout_height="25pt"
+                android:padding="4pt"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12pt" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/sP4"
+                android:layout_height="25pt"
+                android:padding="4pt"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12pt" />
+
+        </TableRow>
 
     </TableLayout>
 
