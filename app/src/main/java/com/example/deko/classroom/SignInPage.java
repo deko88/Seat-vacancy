@@ -49,6 +49,7 @@ public class SignInPage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SeatVacancy.class);
                 intent.putExtra("NAME", userName);
                 startActivity(intent);
+                finish();
 
             } else {
                     {
