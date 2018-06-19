@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "723023880645",
+    "firebase_url": "https://classroom-1074f.firebaseio.com",
+    "project_id": "classroom-1074f",
+    "storage_bucket": "classroom-1074f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723023880645:android:ddfc5ad1e694c7f6",
+        "android_client_info": {
+          "package_name": "com.example.deko.classroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723023880645-31ck5oef0q51vhv2m21leaobvno453t4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deko.classroom",
+            "certificate_hash": "06b2bd63a7720fcb75457723a284dd07aff385de"
+          }
+        },
+        {
+          "client_id": "723023880645-8fs3vrid4m3hs2u3anh9adhddc4vn6l0.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "723023880645-8fs3vrid4m3hs2u3anh9adhddc4vn6l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcWEUYfhWClcH2gykq999NZF1HQ2vX84U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723023880645-8fs3vrid4m3hs2u3anh9adhddc4vn6l0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

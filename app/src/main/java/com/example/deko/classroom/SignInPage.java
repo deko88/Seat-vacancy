@@ -15,6 +15,7 @@ public class SignInPage extends AppCompatActivity {
     EditText Name;
     EditText Password;
     Button Login;
+    Button Test; // part of the test
 
     int counter = 3;
 
@@ -26,6 +27,7 @@ public class SignInPage extends AppCompatActivity {
         Name = findViewById(R.id.userName);
         Password = findViewById(R.id.passWord);
         Login = findViewById(R.id.signIn);
+        Test = findViewById(R.id.test); // part of the test
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +35,16 @@ public class SignInPage extends AppCompatActivity {
                 validate(Name.getText().toString(), Password.getText().toString());
             }
         });
+
+        Test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent test = new Intent(SignInPage.this, Register.class);
+                startActivity(test);
+                finish(); // part of the test
+            }
+        });
+
     }
 
     public void validate(String userName, String userPassword) {
@@ -41,9 +53,11 @@ public class SignInPage extends AppCompatActivity {
 
             if (TextUtils.isEmpty(userName)) {
                 Name.setError("Please enter your name");
+                Name.requestFocus();
 
             } else if (TextUtils.isEmpty(userPassword)) {
                 Password.setError("Please enter your password");
+                Password.requestFocus();
 
             } else if (((userName.equals("Mike")) && (userPassword.equals("Tuna"))) || ((userName.equals("Joe")) && (userPassword.equals("Swordfish"))) || ((userName.equals("Becca")) && (userPassword.equals("HammerShark")))) {
                 Intent intent = new Intent(getApplicationContext(), SeatVacancy.class);
@@ -64,3 +78,4 @@ public class SignInPage extends AppCompatActivity {
             }
     }
 }
+
