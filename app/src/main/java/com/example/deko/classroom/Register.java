@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class Register extends AppCompatActivity {
 
@@ -67,25 +68,29 @@ public class Register extends AppCompatActivity {
         }
 
         else if (password.length() < 8) {
-            addPassword.setError("Minimum length of password should be 8");
+            addPassword.setError("Too short, it should be at least 8 characters");
             addPassword.requestFocus();
         }
 
+        else {
 
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Intent intent = new Intent(getApplicationContext(), SeatVacancy.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unexpected error!", Toast.LENGTH_SHORT).show();
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent intent = new Intent(getApplicationContext(), SignInPage.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (task.getException() instanceof FirebaseAuthUserCollisionException){
+                        Toast.makeText(getApplicationContext(), "The given user is already registered.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+            });
 
-            }
-        });
-
+        }
 
     }
 

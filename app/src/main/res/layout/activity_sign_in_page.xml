@@ -8,8 +8,8 @@
     tools:context=".SignInPage">
 
     <EditText
-        android:id="@+id/userName"
-        android:hint="Username"
+        android:id="@+id/email"
+        android:hint="Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.1" />
 
     <Button
@@ -58,9 +58,9 @@
         app:layout_constraintTop_toBottomOf="@+id/passWord"
         app:layout_constraintVertical_bias="0.2" />
 
-    <Button
-        android:id="@+id/test"
-        android:text="test"
+    <TextView
+        android:id="@+id/signUp"
+        android:text="Sign Up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
