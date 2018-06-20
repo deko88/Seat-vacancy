@@ -51,8 +51,8 @@ public class SignInPage extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent test = new Intent(SignInPage.this, Register.class);
-                startActivity(test);
+                Intent signUP = new Intent(SignInPage.this, Register.class);
+                startActivity(signUP);
                 finish();
             }
         });
@@ -89,9 +89,9 @@ public class SignInPage extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(getApplicationContext(), SeatVacancy.class);
-                        intent.putExtra("NAME", email);
-                        startActivity(intent);
+                        Intent seat = new Intent(getApplicationContext(), SeatVacancy.class);
+                        seat.putExtra("NAME", email);
+                        startActivity(seat);
                         finish();
                     } else {
                         counter--;

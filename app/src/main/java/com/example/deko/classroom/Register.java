@@ -78,8 +78,8 @@ public class Register extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(getApplicationContext(), SignInPage.class);
-                        startActivity(intent);
+                        Intent signIn = new Intent(getApplicationContext(), SignInPage.class);
+                        startActivity(signIn);
                         finish();
                     } else if (task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(), "The given user is already registered.", Toast.LENGTH_SHORT).show();
