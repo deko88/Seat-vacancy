@@ -4,6 +4,9 @@ public class User {
 
     private String studentName, studentEmail, studentYear, studentSpecialization;
 
+    public User() {
+    }
+
 
     public User(String studentName, String studentEmail, String studentYear, String studentSpecialization) {
         this.studentName = studentName;
