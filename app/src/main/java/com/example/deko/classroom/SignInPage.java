@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
@@ -34,6 +33,7 @@ public class SignInPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_page);
 
+
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.passWord);
         Login = findViewById(R.id.signIn);
@@ -44,7 +44,7 @@ public class SignInPage extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(Email.getText().toString(), Password.getText().toString());
+                validate();
             }
         });
 
@@ -57,46 +57,28 @@ public class SignInPage extends AppCompatActivity {
             }
         });
 
+
     }
 
-    public void validate(final String email, String password) {
+    public void validate() {
 
 
+        if (hasEmailValue() && hasPasswordValue()) {
 
-        if (TextUtils.isEmpty(email)) {
-            Email.setError("Email is required");
-            Email.requestFocus();
-        }
-
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Email.setError("Please enter a valid email");
-            Email.requestFocus();
-        }
-
-        else if (TextUtils.isEmpty(password)) {
-            Password.setError("Password is required");
-            Password.requestFocus();
-        }
-
-        else if (password.length() < 8) {
-            Password.setError("Too short, it should be at least 8 characters");
-            Password.requestFocus();
-        }
-
-        else {
+            final String email = Email.getText().toString();
+            final String password = Password.getText().toString();
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Intent seat = new Intent(getApplicationContext(), SeatVacancy.class);
-                        seat.putExtra("NAME", email);
                         startActivity(seat);
                         finish();
                     } else {
                         counter--;
 
-                        Toast.makeText(getApplicationContext(), "Please enter the correct Username or Password. You have " + counter + " attempts remaining.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Please enter the correct Email or Password. You have " + counter + " attempts remaining.", Toast.LENGTH_LONG).show();
 
                         if (counter == 0) {
                             Login.setEnabled(false);
@@ -104,12 +86,35 @@ public class SignInPage extends AppCompatActivity {
 
                     }
 
-                    }
+                }
             });
 
         }
 
     }
+
+    private boolean hasEmailValue() {
+        if (TextUtils.isEmpty(Email.getText().toString())) {
+            Email.setError("Email is required");
+            Email.requestFocus();
+
+            return false;
+
+        }
+        return true;
+    }
+
+
+    private boolean hasPasswordValue() {
+        if (TextUtils.isEmpty(Password.getText().toString())) {
+            Password.setError("Password is required");
+            Password.requestFocus();
+
+            return false;
+        }
+        return true;
+    }
+
 
 }
 
