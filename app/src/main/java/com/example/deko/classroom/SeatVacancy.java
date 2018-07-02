@@ -2,24 +2,33 @@ package com.example.deko.classroom;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SeatVacancy extends AppCompatActivity {
 
+    List<User> userList;
+
+    RecyclerView gridView;
 
     FirebaseAuth mAuth;
     DatabaseReference myRef;
@@ -30,29 +39,57 @@ public class SeatVacancy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_vacancy);
 
+        gridView = findViewById(R.id.recyclerView);
+        gridView.setHasFixedSize(true);
+        gridView.setLayoutManager(new GridLayoutManager(this, 4));
 
+        userList = new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference(mAuth.getUid());
+        myRef.keepSynced(true);
 
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        myRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+               // User user = dataSnapshot.getValue(User.class);
 
+               // userList.add(user);
+
+                UserAdapter adapter = new UserAdapter(SeatVacancy.this, userList);
+                gridView.setAdapter(adapter);
 
 
             }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), databaseError.getCode(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
