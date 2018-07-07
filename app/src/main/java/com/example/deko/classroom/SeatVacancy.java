@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +25,7 @@ import java.util.List;
 
 public class SeatVacancy extends AppCompatActivity {
 
-    List<User> userList;
+    List<Seat> seatList;
 
     RecyclerView gridView;
 
@@ -43,10 +42,10 @@ public class SeatVacancy extends AppCompatActivity {
         gridView.setHasFixedSize(true);
         gridView.setLayoutManager(new GridLayoutManager(this, 4));
 
-        userList = new ArrayList<>();
+        seatList = new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference(mAuth.getUid());
+        myRef = FirebaseDatabase.getInstance().getReference("Classroom");
         myRef.keepSynced(true);
 
     }
@@ -58,11 +57,11 @@ public class SeatVacancy extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-               // User user = dataSnapshot.getValue(User.class);
+               Seat seat = dataSnapshot.getValue(Seat.class);
 
-               // userList.add(user);
+               seatList.add(seat);
 
-                UserAdapter adapter = new UserAdapter(SeatVacancy.this, userList);
+                SeatAdapter adapter = new SeatAdapter(SeatVacancy.this, seatList);
                 gridView.setAdapter(adapter);
 
 

@@ -7,18 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class SeatAdapter extends RecyclerView.Adapter<SeatAdapter.UserViewHolder> {
 
     private Context conText;
 
-    private List<User> userList;
+    private List<Seat> seatList;
 
-    public UserAdapter(Context conText, List<User> userList) {
+    public SeatAdapter(Context conText, List<Seat> userList) {
         this.conText = conText;
-        this.userList = userList;
+        this.seatList = userList;
     }
 
     @Override
@@ -30,27 +29,27 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
-       // User user = userList.get(position);
+        Seat seat = seatList.get(position);
 
-       // holder.showName.setText(user.getStudentName());
+        holder.showSeat.setText("Seat " + seat.getNumber());
 
     }
 
 
     @Override
     public int getItemCount() {
-        return 20;
+        return seatList.size();
     }
 
 
     class UserViewHolder extends RecyclerView.ViewHolder {
 
-        TextView showName;
+        TextView showSeat;
 
         public UserViewHolder(View itemView) {
             super(itemView);
 
-            showName = itemView.findViewById(R.id.showName);
+            showSeat = itemView.findViewById(R.id.showSeat);
         }
     }
 
