@@ -40,7 +40,7 @@ public class SeatVacancy extends AppCompatActivity {
 
         gridView = findViewById(R.id.recyclerView);
         gridView.setHasFixedSize(true);
-        gridView.setLayoutManager(new GridLayoutManager(this, 4));
+        gridView.setLayoutManager(new GridLayoutManager(this, 2));
 
         seatList = new ArrayList<>();
 
@@ -57,9 +57,9 @@ public class SeatVacancy extends AppCompatActivity {
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-               Seat seat = dataSnapshot.getValue(Seat.class);
+                Seat seat = dataSnapshot.getValue(Seat.class);
 
-               seatList.add(seat);
+                seatList.add(seat);
 
                 SeatAdapter adapter = new SeatAdapter(SeatVacancy.this, seatList);
                 gridView.setAdapter(adapter);
